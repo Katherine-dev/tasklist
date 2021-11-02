@@ -4,7 +4,7 @@
       <button class="btn btn-primary" @click="createTask">Добавить задачу</button>
     </div>
     <div class="tasks" v-for="task in tasks" :key="task.id">
-      <task class="g-col-6" :task="task" />
+      <task :task="task" />
     </div>
   </div>
 </template>

@@ -13,10 +13,25 @@ export default createStore({
     taskToEdit: null,
   },
   mutations: {
+    initTasks(state) {
+      const localTasks = localStorage.getItem("tasks");
+      if (localTasks) {
+        state.tasks = JSON.parse(localTasks);
+      } else {
+        const parsed = JSON.stringify(state.tasks);
+        localStorage.setItem("tasks", parsed);
+      }
+    },
+    saveTasks(state) {
+      const parsed = JSON.stringify(state.tasks);
+      localStorage.setItem("tasks", parsed);
+    },
     //удаление задачи
     deleteTaskActive(state, taskToRemove) {
       state.deleteTask = true;
       state.taskToRemove = taskToRemove;
+      state.editTask = false;
+      state.taskToEdit = null;
     },
     deleteTaskInactive(state) {
       state.deleteTask = false;
@@ -26,6 +41,7 @@ export default createStore({
       state.deleteTask = false;
       state.tasks = state.tasks.filter((t) => t.id !== state.taskToRemove.id);
       state.taskToRemove = null;
+      localStorage.removeItem("notes");
     },
     //редактирование задачи
     editTaskActive(state, taskToEdit = state.taskToEdit) {
@@ -33,9 +49,9 @@ export default createStore({
       state.taskToEdit = taskToEdit;
     },
     editTaskInactive(state) {
-      state.editTask = false;
+      // state.editTask = false;
       state.isEditingModal = true;
-      state.taskToRemove = null;
+      // state.taskToRemove = null;
     },
     //TODO
     editTaskDone(state, editedTask) {
@@ -48,6 +64,7 @@ export default createStore({
       }
 
       state.taskToEdit = null;
+      localStorage.removeItem("notes");
     },
 
     closeEditingActive(state) {
@@ -55,6 +72,8 @@ export default createStore({
     },
     closeEditingInactive(state) {
       state.isEditingModal = false;
+      state.editTask = false;
+      state.taskToRemove = null;
     },
     //создание задачи
     createTaskActive(state) {
@@ -65,7 +84,8 @@ export default createStore({
     },
     addTask(state, payload) {
       state.tasks.push(payload);
-    }
+      localStorage.removeItem("notes");
+    },
   },
   actions: {},
   modules: {},

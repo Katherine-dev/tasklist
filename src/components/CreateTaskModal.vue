@@ -69,6 +69,7 @@ export default {
        if (this.newTask.title.trim() && this.newTask.steps.length !== 0) {
         this.$store.commit('addTask', this.newTask);
         this.$store.commit('createTaskInactive');
+        this.$store.commit('saveTasks');
        } else {
          alert('Вы не ввели название или подзадачи задания')
        }

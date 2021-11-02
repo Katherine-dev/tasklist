@@ -21,12 +21,27 @@
             :checked="step.done"
             v-model="step.done"
           />
-          <label class="form-check-label" for="flexCheckDefault">
-            {{ step.name }}
-          </label>
+          <input
+            class="form-check-label form-control step"
+            v-model="step.name"
+            for="flexCheckDefault"
+          />
+          <i @click="removeSubtask(index)" class="bi bi-x-circle"></i>
+          <i
+            v-show="index == edTaskUpd.steps.length - 1"
+            @click="addSubtask"
+            class="bi bi-plus-circle"
+          ></i>
         </div>
-        <div class="modal-footer">
-          <button class="modal-default-button btn btn-primary" @click="save">
+      </div>
+      <div class="modal-footer">
+        <div>
+          <button class="modal-default-button btn btn-danger" @click="showDeleteModal">
+            Удалить задание
+          </button>
+        </div>
+        <div>
+          <button class="modal-save-button btn btn-primary" @click="save">
             OK
           </button>
           <button class="modal-default-button btn btn-secondary" @click="close">
@@ -42,23 +57,38 @@
 export default {
   data: function() {
     return {
-      // edTaskLast: JSON.parse(JSON.stringify(this.$store.state.taskToEdit)),
-      edTaskUpd: JSON.parse(JSON.stringify(this.$store.state.taskToEdit))
+      edTaskUpd: JSON.parse(JSON.stringify(this.$store.state.taskToEdit)),
     }
   },
   methods: {
     close() {
-      // this.edTaskUpd =  this.edTaskLast;
-      // this.$store.commit('editTaskDone', this.edTaskLast);
       this.$store.commit('editTaskInactive');
     },
     save() {
        if (this.edTaskUpd.title.trim()) {
-       this.$store.commit('editTaskDone', this.edTaskUpd);
+         if (!(this.edTaskUpd.steps.map(element => element.name === undefined).includes(true))) {
+          this.$store.commit('editTaskDone', this.edTaskUpd);
+          this.$store.commit('saveTasks');
+         } else {
+           alert("Не все позадачи заполнены")
+         }
        } else {
          alert("Вы не ввели название задачи");
        }
-    }
+    },
+    addSubtask() {
+      this.edTaskUpd.steps.push({})
+    },
+    removeSubtask(stepId) {
+      if (this.edTaskUpd.steps.length > 1) {
+        this.edTaskUpd.steps = this.edTaskUpd.steps.filter((step, i) => i !== stepId )
+      } else {
+        alert("Нужно оставить минимум одну задачу")
+      }
+    },
+    showDeleteModal() {
+      this.$store.commit('deleteTaskActive', this.edTaskUpd);
+    },
   },
 }
 </script>
@@ -74,6 +104,7 @@ export default {
   display: flex;
   justify-content: center;
   background-color: #00000018;
+  z-index: 1;
 }
 .modal-wrapper {
   text-align: center;
@@ -91,6 +122,9 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 0 6px;
+  padding: 0;
+  margin-bottom: 8px;
 
   &__input {
     margin-right: 8px;
@@ -100,5 +134,31 @@ export default {
   margin: 0 6px;
   width: auto;
   margin-bottom: 8px;
+}
+.step {
+  height: 22px;
+  width: 100%;
+  margin-right: 8px;
+}
+
+.bi-x-circle {
+  margin-right: 8px;
+}
+
+.bi-plus-circle:hover {
+  cursor: pointer;
+  color: blue;
+}
+.bi-x-circle:hover {
+  cursor: pointer;
+  color: maroon;
+}
+.modal-footer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.modal-save-button {
+  margin-right: 20px;
 }
 </style>

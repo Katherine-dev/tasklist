@@ -31,6 +31,7 @@ export default {
     confirm() {
       if (this.isDeleting) {
         this.$store.commit('removeTask');
+        this.$store.commit('saveTasks');
       } else if (this.isEditing) {
         this.$store.commit('closeEditingInactive')
       }
@@ -57,6 +58,7 @@ export default {
   display: flex;
   justify-content: center;
   background-color: #000000da;
+  z-index: 2;
 }
 .modal-wrapper {
   text-align: center;

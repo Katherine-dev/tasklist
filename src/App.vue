@@ -20,12 +20,6 @@ export default {
     EditModal,
     CreateTaskModal
   },
-  data: function() {
-    return {
-      task: null,
-      isTaskOpen: false
-    }
-  },
   computed: {
     isDeleting(){
       return this.$store.state.deleteTask;
@@ -39,7 +33,10 @@ export default {
     isCreating(){
       return this.$store.state.isCreatingTask;
     },
-  } 
+  },
+  mounted() {
+    this.$store.commit('initTasks');
+  }
 };
 </script>
 

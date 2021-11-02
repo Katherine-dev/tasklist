@@ -5,22 +5,24 @@
       <i @click="showEditModal" class="edit__icon bi bi-pencil-square"></i>
       <i @click="showDeleteModal" class="delete__icon bi bi-trash"></i>
     </div>
-    <div
-      class="form-check"
-      v-for="(step, index) in task.steps.slice(0, 3)"
-      :key="index"
-    >
-      <input
-        class="form-check-input"
-        type="checkbox"
-        value=""
-        id="flexCheckDefault"
-        :checked="step.done"
-        disabled
-      />
-      <label class="form-check-label" for="flexCheckDefault">
-        {{ step.name }}
-      </label>
+    <div class="steps__container">
+      <div
+        class="form-check"
+        v-for="(step, index) in task.steps.slice(0, 3)"
+        :key="index"
+      >
+        <input
+          class="form-check-input"
+          type="checkbox"
+          value=""
+          id="flexCheckDefault"
+          :checked="step.done"
+          disabled
+        />
+        <label class="form-check-label" for="flexCheckDefault">
+          {{ step.name }}
+        </label>
+      </div>
     </div>
   </div>
 </template>
@@ -51,7 +53,7 @@ export default {
     border: solid 1px black;
     border-radius: 8px;
     margin: 20px;
-    padding: 4px
+    padding: 4px;
   }
   &__title {
     margin-right: 12px;
@@ -64,11 +66,13 @@ export default {
   }
   &__icon:hover {
     cursor: pointer;
+    color: blue;
   }
 }
 .delete {
   &__icon:hover {
     cursor: pointer;
+    color: maroon;
   }
 }
 
