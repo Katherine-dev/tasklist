@@ -51,7 +51,7 @@ export default {
     border: solid 1px black;
     border-radius: 8px;
     margin: 20px;
-    padding: 4px 0;
+    padding: 4px
   }
   &__title {
     margin-right: 12px;

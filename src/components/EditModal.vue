@@ -4,13 +4,13 @@
       <input
         class="form-control title"
         type="text"
-        v-model="editedTask.title"
+        v-model="edTaskUpd.title"
         placeholder="Название..."
       />
       <div class="steps">
         <div
           class="form-check"
-          v-for="(step, index) in editedTask.steps"
+          v-for="(step, index) in edTaskUpd.steps"
           :key="index"
         >
           <input
@@ -19,14 +19,14 @@
             value=""
             id="flexCheckDefault"
             :checked="step.done"
-            @change="changeStep"
+            v-model="step.done"
           />
           <label class="form-check-label" for="flexCheckDefault">
             {{ step.name }}
           </label>
         </div>
         <div class="modal-footer">
-          <button class="modal-default-button btn btn-primary" @click="confirm">
+          <button class="modal-default-button btn btn-primary" @click="save">
             OK
           </button>
           <button class="modal-default-button btn btn-secondary" @click="close">
@@ -40,16 +40,26 @@
 
 <script>
 export default {
-  computed: {
-    editedTask() {
-      return this.$store.state.taskToEdit;
+  data: function() {
+    return {
+      // edTaskLast: JSON.parse(JSON.stringify(this.$store.state.taskToEdit)),
+      edTaskUpd: JSON.parse(JSON.stringify(this.$store.state.taskToEdit))
     }
   },
   methods: {
     close() {
+      // this.edTaskUpd =  this.edTaskLast;
+      // this.$store.commit('editTaskDone', this.edTaskLast);
       this.$store.commit('editTaskInactive');
+    },
+    save() {
+       if (this.edTaskUpd.title.trim()) {
+       this.$store.commit('editTaskDone', this.edTaskUpd);
+       } else {
+         alert("Вы не ввели название задачи");
+       }
     }
-  }
+  },
 }
 </script>
 

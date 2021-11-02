@@ -8,14 +8,11 @@
 
 <script>
 import Task from './src/components/Task.vue'
-
 export default {
-  components: {
-    Task,
-  },
+  components: { Task },
   computed: {
     tasks(){
-      return this.$store.state.tasks;
+      return this.$store.state.tasks
     }
   }
 }

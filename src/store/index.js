@@ -36,8 +36,15 @@ export default createStore({
       state.taskToRemove = null;
     },
     //TODO
-    editTask(state) {
+    editTaskDone(state, editedTask) {
       state.editTask = false;
+      for (const task of state.tasks) {
+        if (task.id === editedTask.id) {
+          task.title = editedTask.title;
+          task.steps = editedTask.steps;
+        }
+      }
+
       state.taskToEdit = null;
     },
 
@@ -47,6 +54,10 @@ export default createStore({
     closeEditingInactive(state) {
       state.isEditingModal = false;
     },
+
+    setTaskToEdit(state, editedTask) {
+      state.taskToEdit = editedTask;
+    }
   },
   actions: {},
   modules: {},

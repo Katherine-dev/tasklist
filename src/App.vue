@@ -1,7 +1,7 @@
 <template>
   <MainView />
-  <ConfirmModal v-if="isDeleting || isCloseEditing" />
-  <EditModal v-if="isEditing" />
+  <ConfirmModal v-if="isDeleting || isEditingModal"/>
+  <EditModal v-if="isEditing"/>
 </template>
 
 <script>
@@ -30,7 +30,7 @@ export default {
     isEditing(){
       return this.$store.state.editTask;
     },
-     isCloseEditing(){
+    isEditingModal(){
       return this.$store.state.isEditingModal;
     },
   } 
