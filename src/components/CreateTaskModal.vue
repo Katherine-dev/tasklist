@@ -1,6 +1,6 @@
 <template class="MyModal">
-  <div class="modal-mask">
-    <div class="modal-wrapper">
+  <div class="modal__mask">
+    <div class="modal__wrapper">
       <input
         class="form-control title"
         type="text"
@@ -27,7 +27,11 @@
             for="flexCheckDefault"
             v-model="step.name"
           />
-          <i @click="addSubtask" class="bi bi-plus-circle"></i>
+          <i
+            v-show="index == newTask.steps.length - 1"
+            @click="addSubtask"
+            class="bi bi-plus-circle"
+          ></i>
           <i @click="removeSubtask(index)" class="bi bi-x-circle"></i>
         </div>
         <div class="modal-footer">
@@ -66,10 +70,14 @@ export default {
       }
     },
     save() {
-       if (this.newTask.title.trim() && this.newTask.steps.length !== 0) {
-        this.$store.commit('addTask', this.newTask);
-        this.$store.commit('createTaskInactive');
-        this.$store.commit('saveTasks');
+       if (this.newTask.title.trim()) {
+         if (!(this.newTask.steps.map(element => element.name === undefined).includes(true))) {
+          this.$store.commit('addTask', this.newTask);
+          this.$store.commit('createTaskInactive');
+          this.$store.commit('saveTasks');
+        } else {
+           alert("Не все позадачи заполнены")
+         }
        } else {
          alert('Вы не ввели название или подзадачи задания')
        }
@@ -82,27 +90,29 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.modal-mask {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  display: flex;
-  justify-content: center;
-  background-color: #00000018;
-}
-.modal-wrapper {
-  text-align: center;
-  background-color: white;
-  height: 300px;
-  width: 500px;
-  margin-top: 60px;
-  padding: 60px 0;
-  border-radius: 20px;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
+.modal {
+  &__mask {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    background-color: #00000018;
+  }
+  &__wrapper {
+    text-align: center;
+    background-color: white;
+    height: 300px;
+    width: 500px;
+    margin-top: 60px;
+    padding: 60px 0;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
 }
 
 .form-check {

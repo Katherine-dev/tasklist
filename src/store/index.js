@@ -4,10 +4,13 @@ import tasks from "@/assets/tasks.json";
 export default createStore({
   state: {
     tasks: tasks,
+    //редактирование задачи
     editTask: false,
+    //удаление задачи
     deleteTask: false,
-    //окно подтверждения выхода из окна редактирования
-    isEditingModal: false,
+    //подтверждение выхода из окна редактирования
+    isExitEditing: false,
+    //создание новой задачи
     isCreatingTask: false,
     taskToRemove: null,
     taskToEdit: null,
@@ -49,11 +52,9 @@ export default createStore({
       state.taskToEdit = taskToEdit;
     },
     editTaskInactive(state) {
-      // state.editTask = false;
-      state.isEditingModal = true;
-      // state.taskToRemove = null;
+      state.isExitEditing = true;
+      state.taskToRemove = null;
     },
-    //TODO
     editTaskDone(state, editedTask) {
       state.editTask = false;
       for (const task of state.tasks) {
@@ -68,12 +69,13 @@ export default createStore({
     },
 
     closeEditingActive(state) {
-      state.isEditingModal = true;
+      state.isExitEditing = true;
     },
     closeEditingInactive(state) {
-      state.isEditingModal = false;
+      state.isExitEditing = false;
       state.editTask = false;
       state.taskToRemove = null;
+      state.taskToEdit = null;
     },
     //создание задачи
     createTaskActive(state) {

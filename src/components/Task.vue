@@ -6,6 +6,7 @@
       <i @click="showDeleteModal" class="delete__icon bi bi-trash"></i>
     </div>
     <div class="steps__container">
+      <!-- Выводим первые 3 подзадачи задания на главном экране -->
       <div
         class="form-check"
         v-for="(step, index) in task.steps.slice(0, 3)"

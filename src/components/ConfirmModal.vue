@@ -24,7 +24,7 @@ export default {
       return this.$store.state.deleteTask;
     },
     isEditing(){
-      return this.$store.state.isEditingModal;
+      return this.$store.state.isExitEditing;
     },
   },
   methods: {

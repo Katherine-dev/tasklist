@@ -1,6 +1,6 @@
 <template class="MyModal">
-  <div class="modal-mask">
-    <div class="modal-wrapper">
+  <div class="modal__mask">
+    <div class="modal__wrapper">
       <input
         class="form-control title"
         type="text"
@@ -36,7 +36,10 @@
       </div>
       <div class="modal-footer">
         <div>
-          <button class="modal-default-button btn btn-danger" @click="showDeleteModal">
+          <button
+            class="modal-default-button btn btn-danger"
+            @click="showDeleteModal"
+          >
             Удалить задание
           </button>
         </div>
@@ -95,28 +98,30 @@ export default {
 
 
 <style lang="less" scoped>
-.modal-mask {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  display: flex;
-  justify-content: center;
-  background-color: #00000018;
-  z-index: 1;
-}
-.modal-wrapper {
-  text-align: center;
-  background-color: white;
-  height: 300px;
-  width: 500px;
-  margin-top: 60px;
-  padding: 60px 0;
-  border-radius: 20px;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
+.modal {
+  &__mask {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    background-color: #00000018;
+    z-index: 1;
+  }
+  &__wrapper {
+    text-align: center;
+    background-color: white;
+    height: 300px;
+    width: 500px;
+    margin-top: 60px;
+    padding: 60px 0;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
 }
 .form-check {
   display: flex;

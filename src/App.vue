@@ -1,8 +1,8 @@
 <template>
   <MainView />
-  <ConfirmModal v-if="isDeleting || isEditingModal" />
+  <ConfirmModal v-if="isDeleting || isExitEditing" />
   <EditModal v-if="isEditing" />
-  <create-task-modal v-if="isCreating" />
+  <CreateTaskModal v-if="isCreating" />
 </template>
 
 <script>
@@ -27,8 +27,8 @@ export default {
     isEditing(){
       return this.$store.state.editTask;
     },
-    isEditingModal(){
-      return this.$store.state.isEditingModal;
+    isExitEditing(){
+      return this.$store.state.isExitEditing;
     },
     isCreating(){
       return this.$store.state.isCreatingTask;
