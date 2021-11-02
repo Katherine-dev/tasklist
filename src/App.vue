@@ -1,16 +1,39 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Welcome to Your Vue.js App" />
+  <MainView />
+  <ConfirmModal v-if="isDeleting || isCloseEditing" />
+  <EditModal v-if="isEditing" />
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
+import MainView from "../MainView.vue";
+import ConfirmModal from './components/ConfirmModal.vue'
+import EditModal from './components/EditModal.vue'
+
 
 export default {
   name: "App",
   components: {
-    HelloWorld,
+    MainView,
+    ConfirmModal,
+    EditModal
   },
+  data: function() {
+    return {
+      task: null,
+      isTaskOpen: false
+    }
+  },
+  computed: {
+    isDeleting(){
+      return this.$store.state.deleteTask;
+    },
+    isEditing(){
+      return this.$store.state.editTask;
+    },
+     isCloseEditing(){
+      return this.$store.state.isEditingModal;
+    },
+  } 
 };
 </script>
 
