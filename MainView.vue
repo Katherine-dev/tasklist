@@ -1,5 +1,8 @@
 <template>
   <div class="main__view">
+    <div class="header">
+      <button class="btn btn-primary" @click="createTask">Добавить задачу</button>
+    </div>
     <div class="tasks" v-for="task in tasks" :key="task.id">
       <task class="g-col-6" :task="task" />
     </div>
@@ -14,6 +17,19 @@ export default {
     tasks(){
       return this.$store.state.tasks
     }
+  },
+  methods: {
+    createTask() {
+      this.$store.commit('createTaskActive')
+    }
   }
 }
 </script>
+
+<style scoped>
+.header {
+  display: flex;
+  justify-content: flex-end;
+  margin: 20px;
+}
+</style>

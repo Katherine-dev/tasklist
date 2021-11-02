@@ -8,10 +8,12 @@ export default createStore({
     deleteTask: false,
     //окно подтверждения выхода из окна редактирования
     isEditingModal: false,
+    isCreatingTask: false,
     taskToRemove: null,
     taskToEdit: null,
   },
   mutations: {
+    //удаление задачи
     deleteTaskActive(state, taskToRemove) {
       state.deleteTask = true;
       state.taskToRemove = taskToRemove;
@@ -25,7 +27,7 @@ export default createStore({
       state.tasks = state.tasks.filter((t) => t.id !== state.taskToRemove.id);
       state.taskToRemove = null;
     },
-
+    //редактирование задачи
     editTaskActive(state, taskToEdit = state.taskToEdit) {
       state.editTask = true;
       state.taskToEdit = taskToEdit;
@@ -54,9 +56,15 @@ export default createStore({
     closeEditingInactive(state) {
       state.isEditingModal = false;
     },
-
-    setTaskToEdit(state, editedTask) {
-      state.taskToEdit = editedTask;
+    //создание задачи
+    createTaskActive(state) {
+      state.isCreatingTask = true;
+    },
+    createTaskInactive(state) {
+      state.isCreatingTask = false;
+    },
+    addTask(state, payload) {
+      state.tasks.push(payload);
     }
   },
   actions: {},

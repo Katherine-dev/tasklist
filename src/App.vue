@@ -1,13 +1,15 @@
 <template>
   <MainView />
-  <ConfirmModal v-if="isDeleting || isEditingModal"/>
-  <EditModal v-if="isEditing"/>
+  <ConfirmModal v-if="isDeleting || isEditingModal" />
+  <EditModal v-if="isEditing" />
+  <create-task-modal v-if="isCreating" />
 </template>
 
 <script>
-import MainView from "../MainView.vue";
-import ConfirmModal from './components/ConfirmModal.vue'
-import EditModal from './components/EditModal.vue'
+import MainView from '../MainView.vue';
+import ConfirmModal from './components/ConfirmModal.vue';
+import EditModal from './components/EditModal.vue';
+import CreateTaskModal from './components/CreateTaskModal.vue';
 
 
 export default {
@@ -15,7 +17,8 @@ export default {
   components: {
     MainView,
     ConfirmModal,
-    EditModal
+    EditModal,
+    CreateTaskModal
   },
   data: function() {
     return {
@@ -32,6 +35,9 @@ export default {
     },
     isEditingModal(){
       return this.$store.state.isEditingModal;
+    },
+    isCreating(){
+      return this.$store.state.isCreatingTask;
     },
   } 
 };
