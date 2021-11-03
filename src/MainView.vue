@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import Task from './src/components/Task.vue'
+import Task from './components/Task.vue'
 export default {
   components: { Task },
   computed: {

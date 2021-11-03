@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import MainView from '../MainView.vue';
+import MainView from './MainView.vue';
 import ConfirmModal from './components/ConfirmModal.vue';
 import EditModal from './components/EditModal.vue';
 import CreateTaskModal from './components/CreateTaskModal.vue';
