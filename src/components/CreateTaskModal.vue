@@ -75,6 +75,7 @@ export default {
     save() {
        if (this.newTask.title.trim()) {
          if (!(this.newTask.steps.map(element => element.name === undefined).includes(true))) {
+          this.newTask.id = Date.now();
           this.$store.commit('addTask', this.newTask);
           this.$store.commit('createTaskInactive');
           this.$store.commit('saveTasks');
@@ -104,6 +105,7 @@ export default {
     justify-content: center;
     background-color: #00000018;
   }
+
   &__wrapper {
     text-align: center;
     background-color: white;
@@ -116,6 +118,7 @@ export default {
     justify-content: space-between;
     flex-direction: column;
   }
+
   &__header {
     display: flex;
     flex-direction: column;
@@ -124,11 +127,13 @@ export default {
     overflow-y: auto;
   }
 }
+
 .steps {
   display: flex;
   flex-direction: column;
   overflow-y: auto;
 }
+
 .form-check {
   display: flex;
   justify-content: center;
@@ -148,6 +153,7 @@ export default {
   width: 100%;
   margin-right: 8px;
 }
+
 .bi-plus-circle {
   margin-right: 8px;
 }
@@ -156,10 +162,12 @@ export default {
   cursor: pointer;
   color: blue;
 }
+
 .bi-x-circle:hover {
   cursor: pointer;
   color: maroon;
 }
+
 .title {
   margin-bottom: 6px;
 }

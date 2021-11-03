@@ -1,9 +1,17 @@
 <template>
   <div class="task__view">
-    <div class="header">
+    <div class="task__header">
       <h4 title="Название задания" class="task__title">{{ task.title }}</h4>
-      <i title="Изменить задание" @click="showEditModal" class="edit__icon bi bi-pencil-square"></i>
-      <i title="Удалить задание" @click="showDeleteModal" class="delete__icon bi bi-trash"></i>
+      <i
+        title="Изменить задание"
+        @click="showEditModal"
+        class="edit__icon bi bi-pencil-square"
+      ></i>
+      <i
+        title="Удалить задание"
+        @click="showDeleteModal"
+        class="delete__icon bi bi-trash"
+      ></i>
     </div>
     <div class="steps__container">
       <!-- Выводим первые 3 подзадачи задания на главном экране -->
@@ -56,8 +64,13 @@ export default {
     margin: 20px;
     padding: 4px;
   }
+
   &__title {
     margin-right: 12px;
+  }
+
+  &__header {
+    display: flex;
   }
 }
 
@@ -65,6 +78,7 @@ export default {
   &__icon {
     margin-right: 8px;
   }
+
   &__icon:hover {
     cursor: pointer;
     color: blue;
@@ -75,9 +89,5 @@ export default {
     cursor: pointer;
     color: maroon;
   }
-}
-
-.header {
-  display: flex;
 }
 </style>

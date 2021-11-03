@@ -1,6 +1,6 @@
 <template class="MyModal">
-  <div class="modal-mask">
-    <div class="modal-wrapper">
+  <div class="modal__mask">
+    <div class="modal__wrapper">
       <div v-if="isDeleting">Вы уверены, что хотите удалить задачу?</div>
       <div v-else-if="isEditing">
         Вы уверены, что хотите отменить редактирование?
@@ -48,25 +48,27 @@ export default {
 }
 </script>
 
-<style scoped>
-.modal-mask {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  display: flex;
-  justify-content: center;
-  background-color: #000000da;
-  z-index: 2;
-}
-.modal-wrapper {
-  text-align: center;
-  background-color: white;
-  height: 200px;
-  width: 500px;
-  margin-top: 60px;
-  padding: 60px 0;
-  border-radius: 20px;
+<style lang="less" scoped>
+.modal {
+  &__mask {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    background-color: #000000da;
+    z-index: 2;
+  }
+  &__wrapper {
+    text-align: center;
+    background-color: white;
+    height: 150px;
+    width: 500px;
+    margin-top: 60px;
+    padding: 60px 0;
+    border-radius: 20px;
+  }
 }
 </style>

@@ -150,14 +150,17 @@ export default {
     margin-right: 8px;
   }
 }
+
 .title {
   margin-bottom: 8px;
 }
+
 .steps {
   display: flex;
   flex-direction: column;
   overflow-y: auto;
 }
+
 .step {
   height: 22px;
   width: 100%;
@@ -172,10 +175,12 @@ export default {
   cursor: pointer;
   color: blue;
 }
+
 .bi-x-circle:hover {
   cursor: pointer;
   color: maroon;
 }
+
 .modal-footer {
   display: flex;
   justify-content: space-between;
