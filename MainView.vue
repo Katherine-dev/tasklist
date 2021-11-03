@@ -1,7 +1,7 @@
 <template>
   <div class="main__view">
     <div class="header">
-      <button class="btn btn-primary" @click="createTask">Добавить задачу</button>
+      <button class="btn btn-primary" @click="createTask">Добавить задание</button>
     </div>
     <div class="tasks" v-for="task in tasks" :key="task.id">
       <task :task="task" />

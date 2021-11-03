@@ -1,47 +1,50 @@
 <template class="MyModal">
   <div class="modal__mask">
     <div class="modal__wrapper">
-      <input
-        class="form-control title"
-        type="text"
-        v-model="newTask.title"
-        placeholder="Название..."
-      />
-      <div class="steps">
-        <div
-          class="form-check"
-          ref="formCheck"
-          v-for="(step, index) in newTask.steps"
-          :key="index"
-        >
-          <input
-            class="form-check__input"
-            type="checkbox"
-            id="flexCheckDefault"
-            :checked="step.done"
-            v-model="step.done"
-          />
-          <input
-            class="form-control step"
-            placeholder="Имя задачи"
-            for="flexCheckDefault"
-            v-model="step.name"
-          />
-          <i
-            v-show="index == newTask.steps.length - 1"
-            @click="addSubtask"
-            class="bi bi-plus-circle"
-          ></i>
-          <i @click="removeSubtask(index)" class="bi bi-x-circle"></i>
+      <div class="modal__header">
+        <input
+          class="form-control title"
+          type="text"
+          v-model="newTask.title"
+          placeholder="Название..."
+        />
+
+        <div class="steps">
+          <div
+            class="form-check"
+            ref="formCheck"
+            v-for="(step, index) in newTask.steps"
+            :key="index"
+          >
+            <input
+              class="form-check__input"
+              type="checkbox"
+              id="flexCheckDefault"
+              :checked="step.done"
+              v-model="step.done"
+            />
+            <input
+              class="form-control step"
+              placeholder="Имя задачи"
+              for="flexCheckDefault"
+              v-model="step.name"
+            />
+            <i
+              v-show="index == newTask.steps.length - 1"
+              @click="addSubtask"
+              class="bi bi-plus-circle"
+            ></i>
+            <i @click="removeSubtask(index)" class="bi bi-x-circle"></i>
+          </div>
         </div>
-        <div class="modal-footer">
-          <button class="modal-default-button btn btn-primary" @click="save">
-            OK
-          </button>
-          <button class="modal-default-button btn btn-secondary" @click="close">
-            Отмена
-          </button>
-        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="modal-default-button btn btn-primary" @click="save">
+          OK
+        </button>
+        <button class="modal-default-button btn btn-secondary" @click="close">
+          Отмена
+        </button>
       </div>
     </div>
   </div>
@@ -104,17 +107,28 @@ export default {
   &__wrapper {
     text-align: center;
     background-color: white;
-    height: 300px;
+    height: 500px;
     width: 500px;
     margin-top: 60px;
-    padding: 60px 0;
+    padding-top: 30px;
     border-radius: 20px;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     flex-direction: column;
   }
+  &__header {
+    display: flex;
+    flex-direction: column;
+    margin: 0 6px;
+    margin-bottom: 8px;
+    overflow-y: auto;
+  }
 }
-
+.steps {
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
 .form-check {
   display: flex;
   justify-content: center;
@@ -122,16 +136,13 @@ export default {
   margin: 0 6px;
   padding: 0;
   margin-bottom: 8px;
+  overflow-y: auto;
 
   &__input {
     margin-right: 8px;
   }
 }
-.title {
-  margin: 0 6px;
-  width: auto;
-  margin-bottom: 8px;
-}
+
 .step {
   height: 22px;
   width: 100%;
@@ -148,5 +159,8 @@ export default {
 .bi-x-circle:hover {
   cursor: pointer;
   color: maroon;
+}
+.title {
+  margin-bottom: 6px;
 }
 </style>

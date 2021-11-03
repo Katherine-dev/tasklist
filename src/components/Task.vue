@@ -1,9 +1,9 @@
 <template>
   <div class="task__view">
     <div class="header">
-      <h4 class="task__title">{{ task.title }}</h4>
-      <i @click="showEditModal" class="edit__icon bi bi-pencil-square"></i>
-      <i @click="showDeleteModal" class="delete__icon bi bi-trash"></i>
+      <h4 title="Название задания" class="task__title">{{ task.title }}</h4>
+      <i title="Изменить задание" @click="showEditModal" class="edit__icon bi bi-pencil-square"></i>
+      <i title="Удалить задание" @click="showDeleteModal" class="delete__icon bi bi-trash"></i>
     </div>
     <div class="steps__container">
       <!-- Выводим первые 3 подзадачи задания на главном экране -->
